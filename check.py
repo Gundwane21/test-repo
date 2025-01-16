@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-# Telegram Bot API token and chat ID
-TELEGRAM_TOKEN = "7298123506:AAGygclPWIlXtvmQvz03WVzWQKDJyMJP_GY"
-CHAT_ID = "6987022021"
+# Read sensitive data from environment variables
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 def send_telegram_message(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
