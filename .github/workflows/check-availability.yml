@@ -3,7 +3,7 @@ name: Check Visa Availability
 on:
   schedule:
     # Runs every hour
-    - cron: '0 * * * *'
+    - cron: '* * * * *'
   workflow_dispatch: # Allows manual triggering of the workflow
     inputs: {}
 
