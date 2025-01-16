@@ -94,22 +94,18 @@ if __name__ == "__main__":
         # Check for availability
         available_days, unavailable_days = check_availability(html_content)
 
-        # Build the message
+        # Log and print all availabilities
         if available_days:
             days_list = "\n".join([f"Day {day}: {slots} slots available" for day, slots in available_days.items()])
-            available_message = f"✅ Visa appointments available on the following days:\n{days_list}"
+            print(f"Available days:\n{days_list}")
         else:
-            available_message = "❌ No visa appointments available."
+            print("No visa appointments available.")
 
         if unavailable_days:
             unavailable_list = ", ".join(unavailable_days)
-            unavailable_message = f"❌ The following days have no availability:\n{unavailable_list}"
-        else:
-            unavailable_message = "All days are currently available."
-
-        # Combine messages
-        final_message = f"{available_message}\n\n{unavailable_message}"
-
-        # Send the message via Telegram
-        print(final_message)
-        send_telegram_message(final_message)
+            print(f"Unavailable days: {unavailable_list}")
+        
+        # Only send Telegram message if there are available slots
+        if available_days:
+            message = f"✅ Visa appointments available on the following days:\n{days_list}"
+            send_telegram_message(message)
